@@ -1,0 +1,18 @@
+# Build output
+bin/
+obj/
+
+# Secrets & per-account state — DO NOT COMMIT
+appsettings.json
+*.session
+*.session.bak
+state/
+
+# IDE
+.vs/
+.idea/
+*.user
+
+# OS
+.DS_Store
+Thumbs.db

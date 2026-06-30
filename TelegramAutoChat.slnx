@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TelegramAutoChat.App/TelegramAutoChat.App.csproj" />
+    <Project Path="src/TelegramAutoChat.Core/TelegramAutoChat.Core.csproj" />
+  </Folder>
+</Solution>

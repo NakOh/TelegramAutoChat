@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+
+    <PackageId>TelegramAutoChat.Core</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>NakOh</Authors>
+    <Description>Base engine for automating Telegram user-account conversations with any chat or bot. Implement one interface to add a new automation; the engine handles login, session, update routing and scheduling.</Description>
+    <Packagelicense>MIT</Packagelicense>
+    <PackageTags>telegram;automation;bot;wtelegramclient;mtproto</PackageTags>
+    <RepositoryUrl>https://github.com/NakOh/TelegramAutoChat</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WTelegramClient" Version="4.3.10" />
+  </ItemGroup>
+
+</Project>
