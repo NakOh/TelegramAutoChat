@@ -101,19 +101,12 @@ public sealed class AutomationHost {
 
 	private async Task OnUpdates(UpdatesBase updates) {
 		try {
-			switch (updates) {
-				case Updates u:
-					foreach (var upd in u.updates)
-						if (upd is UpdateNewMessage { message: Message m })
-							await Dispatch(PeerKey(m.peer_id), m.id, m.flags.HasFlag(Message.Flags.out_), m.message, FromId(m));
-					break;
-				case UpdateShortMessage sm:
-					await Dispatch(KeyUser(sm.user_id), sm.id, sm.flags.HasFlag(UpdateShortMessage.Flags.out_), sm.message, sm.user_id);
-					break;
-				case UpdateShortChatMessage scm:
-					await Dispatch(KeyChat(scm.chat_id), scm.id, scm.flags.HasFlag(UpdateShortChatMessage.Flags.out_), scm.message, scm.from_id);
-					break;
-			}
+			// UpdateList 는 모든 래퍼(Updates / UpdatesCombined / UpdateShort / UpdateShort(Chat)Message)를
+			// 균일하게 펼쳐준다. UpdateNewChannelMessage 는 UpdateNewMessage 의 하위형이라
+			// 이 한 케이스로 유저·봇·그룹·채널·슈퍼그룹 메시지를 모두 처리한다.
+			foreach (var upd in updates.UpdateList)
+				if (upd is UpdateNewMessage { message: Message m })
+					await Dispatch(PeerKey(m.peer_id), m.id, m.flags.HasFlag(Message.Flags.out_), m.message, FromId(m));
 		} catch (Exception ex) {
 			_log($"OnUpdates 오류: {ex.Message}");
 		}

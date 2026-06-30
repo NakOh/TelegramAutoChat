@@ -4,8 +4,8 @@ This guide is written to be **self-contained** — a human or an AI agent can fo
 
 ## The mental model
 
-- You target **one chat/bot** (`Target`).
-- The engine calls `OnTickAsync` on a schedule (optional) and `OnMessageAsync` for every message that arrives **from that target**.
+- You target **one peer** (`Target`) — a bot, a user, a group, a channel, or a supergroup. Use `AutomationTarget.ByUsername("name")` for anything with a public @username, or `AutomationTarget.ById(id)` for a private group/channel you're already in.
+- The engine calls `OnTickAsync` on a schedule (optional) and `OnMessageAsync` for every message that arrives **from that target** (incoming channel/group posts included — you must be a member/subscriber).
 - You act through `ctx`: send messages, notify yourself, read/write small state.
 - Your config lives in `appsettings.json` under a section named exactly like your automation's `Name`.
 
